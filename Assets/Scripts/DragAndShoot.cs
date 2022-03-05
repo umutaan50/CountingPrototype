@@ -12,7 +12,8 @@ public class DragAndShoot : MonoBehaviour
      */
     private Vector3 mousePressDownPos;
     private Vector3 mouseReleasePos;
-
+    private AudioSource audioSource;
+    public AudioClip ballShootSound;
     private Rigidbody rb;
 
     private bool isShooted;
@@ -22,6 +23,7 @@ public class DragAndShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSource = GameObject.Find("Game Manager").GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
     }
 
@@ -42,7 +44,7 @@ public class DragAndShoot : MonoBehaviour
         {
             return;
         }
-
+        audioSource.PlayOneShot(ballShootSound, 1);
         rb.AddForce(new Vector3(force.x, force.y, force.y) * forceMultiplier);
         isShooted = true;
     }

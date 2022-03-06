@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
     public Quaternion ballRotation;
     public Vector3 spawnPos;
 
-    public bool shouldRespawnOne = false;
+    public bool ballCollidedWithWall = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,10 +20,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (shouldRespawnOne)
+        if (ballCollidedWithWall)
         {
             Instantiate(ball, spawnPos, ballRotation);
-            shouldRespawnOne = false;
+            ballCollidedWithWall = false;
         }
     }
 }

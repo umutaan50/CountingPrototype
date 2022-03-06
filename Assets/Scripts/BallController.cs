@@ -1,10 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
+    // 10. sınıfta yaptığı oyunun sunumu
+
+    // Bilgimin %90'ını YouTube'a borçluyum YouTube mükemmel bir şeydir dedi. Bu arada arkada Bilg. Müh olacam oyun yapacam.
     private GameManager gameManager;
+    
 
     private Rigidbody ballRb;
     void Start()
@@ -17,10 +21,12 @@ public class BallController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            gameManager.ballCollidedWithWall = true;
+            gameManager.spawnNeeded = true;
             // Destroy(gameObject);
             // Instead of destroying make these objects stick onto wall:
             ballRb.isKinematic = true;
+            gameObject.transform.SetParent(GameObject.Find("Empty Child").transform);
+            GetComponent<DragAndShoot>().audioSource.PlayOneShot(GetComponent<DragAndShoot>().stickSound, 1);
         }
         
         

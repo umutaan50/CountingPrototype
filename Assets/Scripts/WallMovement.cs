@@ -8,6 +8,9 @@ public class WallMovement : MonoBehaviour
     // Eskiden çok açık dosyalar. XML okumak. XML'i değiştirince oyunda değişiklik. Aaa demek böyle çalışıyor.
     // Çok basit şeyler: 4. 5. sınıf Esas madenini buldum oyunu değiştiriyorum.
 
+    float speed = 10;
+    bool rightMovement = true;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +23,22 @@ public class WallMovement : MonoBehaviour
     // You can shoot and upload a video about that.
     void Update()
     {
-        transform.Translate(Vector3.right * Time.deltaTime * 5);   
+        if (rightMovement)
+        {
+            transform.Translate(Vector3.right * Time.deltaTime * speed);
+            if (transform.position.x > 45)
+            {
+                rightMovement = false;
+            }
+        }
+        else if (rightMovement == false)
+        {
+            transform.Translate(Vector3.left * Time.deltaTime * speed);
+            if (transform.position.x < -45)
+            {
+                rightMovement = true;
+            }
+        }
+        
     }
 }

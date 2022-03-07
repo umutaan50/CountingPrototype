@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        spawnPos = new Vector3(0, 0, 9);
+        spawnPos = new Vector3(0, 0, 2.5f);
         ballRotation = new Quaternion(0, 0, 0, 0);
 
     }

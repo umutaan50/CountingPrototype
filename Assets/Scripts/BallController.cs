@@ -17,6 +17,16 @@ public class BallController : MonoBehaviour
         ballRb = GetComponent<Rigidbody>();
     }
 
+    private void FixedUpdate()
+    {
+        if (transform.position.x > 60 || transform.position.x < -60 || transform.position.y > 17 || transform.position.z > 23)
+        {
+            gameManager.spawnNeeded = true;
+            Destroy(gameObject);
+            
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Wall"))

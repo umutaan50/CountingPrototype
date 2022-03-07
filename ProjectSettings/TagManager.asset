@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - BallForPlayer
+  - Wall Cylinder
   layers:
   - Default
   - TransparentFX

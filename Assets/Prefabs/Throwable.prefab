@@ -126,9 +126,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94081b25362fa7b4b98a9dfa0d9832e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioSource: {fileID: 0}
   shootSound: {fileID: 8300000, guid: c5aadfec0881b8040ae813424bb62dad, type: 3}
   stickSound: {fileID: 8300000, guid: 77fdc6d383bb79f4d80af375216f60d2, type: 3}
+  stickSoundCylinder: {fileID: 8300000, guid: 907a39812f51aea44be25d111b4bc9a2, type: 3}
   forceMultiplier: 7
 --- !u!114 &549909512
 MonoBehaviour:

@@ -12,9 +12,12 @@ public class DragAndShoot : MonoBehaviour
      */
     private Vector3 mousePressDownPos;
     private Vector3 mouseReleasePos;
-    public AudioSource audioSource;
+    private AudioSource audioSource;
     public AudioClip shootSound;
     public AudioClip stickSound;
+    public AudioClip stickSoundCylinder;
+
+
 
     private Rigidbody rb;
 
@@ -86,6 +89,7 @@ public class DragAndShoot : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         audioSource = GameObject.Find("Game Manager").GetComponent<AudioSource>();
         rb = GetComponent<Rigidbody>();
     }
@@ -121,8 +125,11 @@ public class DragAndShoot : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Wall"))
         {
-            forceMultiplier = 0;
-
+            audioSource.PlayOneShot(stickSound, 1);
+        }
+        else if (collision.gameObject.CompareTag("Wall Cylinder"))
+        {
+            audioSource.PlayOneShot(stickSoundCylinder, 1);
         }
     }
 

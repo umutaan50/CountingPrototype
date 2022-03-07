@@ -26,7 +26,7 @@ public class WallMovement : MonoBehaviour
         if (rightMovement)
         {
             transform.Translate(Vector3.right * Time.deltaTime * speed);
-            if (transform.position.x > 45)
+            if (transform.position.x > 30)
             {
                 rightMovement = false;
             }
@@ -34,7 +34,7 @@ public class WallMovement : MonoBehaviour
         else if (rightMovement == false)
         {
             transform.Translate(Vector3.left * Time.deltaTime * speed);
-            if (transform.position.x < -45)
+            if (transform.position.x < -30)
             {
                 rightMovement = true;
             }

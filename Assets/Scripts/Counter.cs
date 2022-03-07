@@ -24,6 +24,6 @@ public class Counter : MonoBehaviour
     void TextUpdate()
     {
         Count += 1;
-        CounterText.SetText("İsabet: " + Count);
+        CounterText.SetText("isabet: " + Count);
     }
 }

@@ -19,7 +19,7 @@ public class BallController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.position.x > 60 || transform.position.x < -60 || transform.position.y > 17 || transform.position.z > 23)
+        if (transform.position.x > 70 || transform.position.x < -70 || transform.position.y > 17 || transform.position.z > 26)
         {
             gameManager.spawnNeeded = true;
             Destroy(gameObject);

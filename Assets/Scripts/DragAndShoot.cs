@@ -20,7 +20,7 @@ public class DragAndShoot : MonoBehaviour
 
     private bool isShooted;
 
-    public float forceMultiplier = 3;
+    public float forceMultiplier = 7;
 
     // Impact yarış oyunu, çok geliştirici oldu. Gameplayde her detayı düşünmek değil.
     // Gameplay kısmındaki şeyleri kodlamak daha çok hoşuma gitti.
@@ -104,6 +104,7 @@ public class DragAndShoot : MonoBehaviour
 
     void Shoot(Vector3 force)
     {
+        forceMultiplier = 7;
         if (isShooted)
         {
             return;
@@ -115,5 +116,14 @@ public class DragAndShoot : MonoBehaviour
 
     // Küçük firmalar biz indieler, onları eksik yönlerinden vurmalıyız.
     // Senaryo. Küçük bir şirketken orasına zaman ayırıp orasından rekabet edebilirsiniz, dediler.
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Wall"))
+        {
+            forceMultiplier = 0;
+
+        }
+    }
 
 }

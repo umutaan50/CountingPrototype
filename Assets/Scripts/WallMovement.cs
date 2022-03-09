@@ -14,6 +14,14 @@ public class WallMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (gameObject.name == "Second Cylinder")
+        {
+            speed += 5;
+        }
+        else if (gameObject.name == "Third Wall")
+        {
+            speed += 10;
+        }
         
     }
 

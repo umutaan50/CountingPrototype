@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
-public class CursorManager : MonoBehaviour 
-    { 
+public class CursorManager : MonoBehaviour
+{
 
     // TODO: Solve issue about collision and spawning more than a ball at the same time.
-
+    public GameObject ball;
+    private BallController ballController;
+    public GameManager gameManager;
+    private CursorManager cursorManager;
     [SerializeField] Texture2D releasedState;
     [SerializeField] Texture2D pressedState;
 
@@ -15,19 +19,30 @@ public class CursorManager : MonoBehaviour
 
     private void Start()
     {
+        cursorManager = gameManager.GetComponent<CursorManager>();
+        ballController = ball.GetComponent<BallController>();
         Cursor.SetCursor(releasedState, _hotspot, _cursorMode);
     }
-
     // I had an issue when I used FixedUpdate in this position instead:
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        MouseEvents();
+    }
+
+    public void MouseEvents()
+    {
+
+        if (!gameManager.isFinished)
         {
-            Cursor.SetCursor(pressedState, _hotspot, _cursorMode);
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            Cursor.SetCursor(releasedState, _hotspot, _cursorMode);
+            if (Input.GetMouseButtonDown(0) && ballController.isMouseHere)
+            {
+                Debug.Log("!");
+                Cursor.SetCursor(pressedState, _hotspot, _cursorMode);
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                Cursor.SetCursor(releasedState, _hotspot, _cursorMode);
+            }
         }
     }
 

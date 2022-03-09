@@ -14,17 +14,6 @@ public class BoxMovement : MonoBehaviour
         InvokeRepeating("Movement", 1f, 1f);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        
-    }
-
     public void Movement()
     {
         transform.Translate(translation);

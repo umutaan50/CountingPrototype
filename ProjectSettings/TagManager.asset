@@ -7,6 +7,7 @@ TagManager:
   - Wall
   - BallForPlayer
   - Wall Cylinder
+  - Clock
   layers:
   - Default
   - TransparentFX

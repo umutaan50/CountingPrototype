@@ -34,9 +34,8 @@ public class CursorManager : MonoBehaviour
 
         if (!gameManager.isFinished)
         {
-            if (Input.GetMouseButtonDown(0) && ballController.isMouseHere)
+            if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("!");
                 Cursor.SetCursor(pressedState, _hotspot, _cursorMode);
             }
             if (Input.GetMouseButtonUp(0))

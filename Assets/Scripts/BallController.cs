@@ -10,27 +10,90 @@ public class BallController : MonoBehaviour
 
     // Bilgimin %90'ını YouTube'a borçluyum YouTube mükemmel bir şeydir dedi. Bu arada arkada Bilg. Müh olacam oyun yapacam.
     private GameManager gameManager;
+    private GameObject lifeImage1;
+    private GameObject lifeImage2;
+    private GameObject lifeImage3;
+    private GameObject lifeImage4;
+    private GameObject lifeImage5;
     public bool isMouseHere = false;
-    private Rigidbody ballRb;
+    // private Rigidbody ballRb;
+
+
+
+    // Generate random number
+
     void Start()
     {
+        lifeImage1 = GameObject.Find("Ball Image 1");
+        lifeImage2 = GameObject.Find("Ball Image 2");
+        lifeImage3 = GameObject.Find("Ball Image 3");
+        lifeImage4 = GameObject.Find("Ball Image 4");
+        lifeImage5 = GameObject.Find("Ball Image 5");
         gameManager = GameObject.Find("Game Manager").GetComponent<GameManager>();
-        ballRb = GetComponent<Rigidbody>();
+        // ballRb = GetComponent<Rigidbody>();
     }
 
     private void Update()
     {
+        // When player misses the target:
         if (transform.position.x > 70 || transform.position.x < -70 || transform.position.y > 17 || transform.position.z > 26)
         {
-            gameManager.spawnNeeded = true;
-            Destroy(gameObject);
+            if (gameManager.life > 0)
+            {
 
+                LifeRemoval();
+                // When there was an exlamation point before the statement above editor crashed...
+            }
         }
 
+
+    }
+
+    public void LifeRemoval() {
+
+        gameManager.life--;
+        if (lifeImage5 != null)
+        {
+            lifeImage5.SetActive(false);
+            gameManager.GetComponent<AudioSource>().PlayOneShot(gameManager.missSfx1, 1);
+        }
+        else if (lifeImage4 != null)
+        {
+            lifeImage4.SetActive(false);
+            gameManager.GetComponent<AudioSource>().PlayOneShot(gameManager.missSfx2, 1);
+        }
+        else if (lifeImage3 != null)
+        {
+            lifeImage3.SetActive(false);
+            gameManager.GetComponent<AudioSource>().PlayOneShot(gameManager.missSfx3, 1);
+        }
+        else if (lifeImage2 != null)
+        {
+            lifeImage2.SetActive(false);
+            gameManager.GetComponent<AudioSource>().PlayOneShot(gameManager.missSfx4, 1);
+        }
+        else if (lifeImage1 != null)
+        {
+            lifeImage1.SetActive(false);
+            gameManager.GetComponent<AudioSource>().PlayOneShot(gameManager.missSfx5, 1);
+        }
+        gameManager.spawnNeeded = true;
+        Destroy(gameObject);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Clock"))
+        {
+            gameManager.GetComponent<AudioSource>().PlayOneShot(gameManager.clockTriggerSound, 1);
+            Destroy(other.gameObject);
+            gameManager.time += 5;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+
         // Level 1
         if (gameManager.currentLevel == 1)
         {
@@ -47,6 +110,7 @@ public class BallController : MonoBehaviour
                 gameManager.spawnNeeded = true;
                 Destroy(gameObject);
                 wallOne.SetHealth(-3);
+                gameManager.time += 5;
             }
         }
 
@@ -59,10 +123,7 @@ public class BallController : MonoBehaviour
                 gameManager.spawnNeeded = true;
                 Destroy(gameObject);
                 wallTwo.SetHealth(-3);
-
-            }
-            if (collision.gameObject.CompareTag("Wall"))
-            {
+                gameManager.time += 5;
 
             }
             else if (collision.gameObject.CompareTag("Wall Cylinder"))
@@ -90,20 +151,21 @@ public class BallController : MonoBehaviour
                 gameManager.spawnNeeded = true;
                 Destroy(gameObject);
                 wallThree.SetHealth(-3);
+                gameManager.time += 5;
             }
         }
 
-        void OnMouseEnter()
-        {
-            Debug.Log("Aha fare!");
-            isMouseHere = true;
-        }
+        //void OnMouseEnter()
+        //{
+        //    Debug.Log("Aha fare!");
+        //    isMouseHere = true;
+        //}
 
-        void OnMouseExit()
-        {
-            isMouseHere = false;
-            Debug.Log("Fare kaçtı!");
-        }
+        //void OnMouseExit()
+        //{
+        //    isMouseHere = false;
+        //    Debug.Log("Fare kaçtı!");
+        //}
 
         //void OnPointerEnter(PointerEventData eventData)
         //{

@@ -31,12 +31,10 @@ public class WallThree : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-            Debug.Log("Game Over!!!");
             gameScreenUI.SetActive(false);
             finishScreenUI.SetActive(true);
             gameManager.isFinished = true;
-            Debug.Log("Game just finished!");
-
+            gameManager.GetComponent<AudioSource>().PlayOneShot(gameManager.winSfx, 1);
         }
         slider.value = health;
         
